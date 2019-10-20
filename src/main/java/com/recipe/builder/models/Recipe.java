@@ -69,14 +69,12 @@ public class Recipe {
     public Recipe(@NotNull @Size(max = 100) String title,
                   @NotNull @Size(max = 50) String cooktime,
                   @NotNull String instructions, @NotNull String description,
-                  @NotNull User user, List<Ingredient> ingredients, List<Tag> tags) {
+                  @NotNull User user) {
         this.title = title;
         this.cooktime = cooktime;
         this.instructions = instructions;
         this.description = description;
         this.user = user;
-        this.ingredients = ingredients;
-        this.tags = tags;
     }
 
     public Long getId() {
@@ -97,6 +95,10 @@ public class Recipe {
 
     public String getDescription() {
         return description;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public List<Ingredient> getIngredients() {

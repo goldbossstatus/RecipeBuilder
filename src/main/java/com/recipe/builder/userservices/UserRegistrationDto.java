@@ -1,9 +1,7 @@
-package com.recipe.builder.Security.dto;
+package com.recipe.builder.userservices;
 
 import com.recipe.builder.constraint.FieldMatch;
-import com.recipe.builder.constraint.FieldMatch;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 

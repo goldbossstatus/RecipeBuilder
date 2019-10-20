@@ -1,7 +1,5 @@
-package com.recipe.builder.UserServices;
+package com.recipe.builder.userservices;
 
-import com.recipe.builder.Repositories.UserRepository;
-import com.recipe.builder.Security.dto.UserRegistrationDto;
 import com.recipe.builder.models.User;
 import com.recipe.builder.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import java.util.List;
 public class UserServiceAdapter implements IUserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

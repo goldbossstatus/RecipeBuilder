@@ -1,7 +1,6 @@
-package com.recipe.builder.Security;
+package com.recipe.builder.security;
 
-import com.recipe.builder.Security.LoggingAccessDeniedHandler;
-import com.recipe.builder.UserServices.UserServiceAdapter;
+import com.recipe.builder.userservices.UserServiceAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

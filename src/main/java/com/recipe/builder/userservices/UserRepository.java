@@ -1,4 +1,4 @@
-package com.recipe.builder.Repositories;
+package com.recipe.builder.userservices;
 
 import com.recipe.builder.models.User;
 import org.springframework.data.repository.CrudRepository;

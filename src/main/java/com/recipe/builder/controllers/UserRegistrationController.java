@@ -1,7 +1,8 @@
-package com.recipe.builder.Controllers;
+package com.recipe.builder.controllers;
 
-import com.recipe.builder.Security.dto.UserRegistrationDto;
-import com.recipe.builder.UserServices.UserServiceAdapter;
+import com.recipe.builder.userservices.UserRegistrationDto;
+import com.recipe.builder.userservices.UserRepository;
+import com.recipe.builder.userservices.UserServiceAdapter;
 import com.recipe.builder.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import javax.validation.Valid;
 public class UserRegistrationController {
 
     @Autowired
-    UserServiceAdapter userServiceAdapter;
+    private UserServiceAdapter userServiceAdapter;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
