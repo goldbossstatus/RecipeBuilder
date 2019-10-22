@@ -1,5 +1,6 @@
 package com.recipe.builder.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
@@ -38,12 +39,15 @@ public class Recipe {
     @ManyToOne()
     @JoinColumn(name = "user_id")
     @NotNull
+    @JsonIgnore
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Ingredient> ingredients = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Tag> tags = new ArrayList<>();
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -113,10 +117,6 @@ public class Recipe {
         return createdAt;
     }
 
-    public Date getLastUpdatedAt() {
-        return lastUpdatedAt;
-    }
-
     public int getDeleted() {
         return deleted;
     }
@@ -124,6 +124,11 @@ public class Recipe {
     public Date getDeleted_at() {
         return deleted_at;
     }
+
+    public Date getLastUpdatedAt() {
+        return lastUpdatedAt;
+    }
+
 
 
 }
