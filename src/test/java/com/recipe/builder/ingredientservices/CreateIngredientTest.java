@@ -30,12 +30,12 @@ public class CreateIngredientTest {
     @Autowired
     private UserRepository userRepository;
 
-//    public CreateIngredientTest(IngredientRepository ir,
-//                                RecipeRepository rr,
-//                                UserRepository ur) {
-//        this.ingredientRepository = ir;
-//        this.recipeRepository = rr;
-//        this.userRepository = ur;
+//    public CreateIngredientTest(IngredientRepository ingredientRepository,
+//                                RecipeRepository recipeRepository,
+//                                UserRepository userRepository) {
+//        this.ingredientRepository = ingredientRepository;
+//        this.recipeRepository = recipeRepository;
+//        this.userRepository = userRepository;
 //    }
 
     User user;
@@ -58,17 +58,40 @@ public class CreateIngredientTest {
         return ThreadLocalRandom.current().nextInt(0, 1000);
     }
 
+//    @Test
+//    public void TestSaveNewIngredient() {
+//        userRepository.save(user);
+//        Recipe recipe = recipeRepository.save(recipe1);
+//        ingredientRepository.save(one);
+//        ingredientRepository.save(two);
+//        recipe.getIngredients().add(one);
+//        recipe.getIngredients().add(two);
+//        recipeRepository.save(recipe);
+//        List<Ingredient> myList = recipe.getIngredients();
+//        assertEquals(one.getRecipe(), recipe);
+//        assertNotEquals(recipe.getIngredients(), two);
+//        assertEquals(myList.size(), 2);
+//        assertEquals(ingredientRepository.findByRecipeId(recipe.getId()).size(), 2);
+//    }
+
     @Test
     public void TestSaveNewIngredient() {
         userRepository.save(user);
         recipeRepository.save(recipe1);
         ingredientRepository.save(one);
         ingredientRepository.save(two);
-        List<Ingredient> myList = recipe1.getIngredients();
         assertEquals(one.getRecipe(), recipe1);
+        assertEquals(two.getRecipe(), recipe1);
         assertNotEquals(recipe1.getIngredients(), two);
-        assertEquals(myList.size(), 2);
-        assertEquals(ingredientRepository.findByRecipeId(recipe1.getId()).size(), 1);
+        assertEquals(ingredientRepository.findByRecipeId(recipe1.getId()).size(), 2);
+    }
+
+    @Test
+    public void TestIngredientDetails() {
+        assertEquals(one.getName(), "Bacon");
+        assertEquals(two.getName(), "Cheese");
+        assertNotEquals(one.getName(), "monkey");
+        assertNotEquals(two.getName(), "monkey");
     }
 
 }

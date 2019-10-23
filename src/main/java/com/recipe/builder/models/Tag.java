@@ -1,11 +1,13 @@
 package com.recipe.builder.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +15,11 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rc_tag")
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(
+        value = {"createdAt", "updatedAt"},
+        allowGetters = true
+)
 @Where(clause = "deleted = 0")
 @SQLDelete(sql = "update rc_tag set deleted = 1 WHERE id = ?")
 public class Tag {
@@ -29,9 +36,8 @@ public class Tag {
     @CreatedDate
     private Date createdAt = new Date();
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "deleted_at")
-    private Date deleted_at = new Date();
+    @Column(name = "deleted")
+    private int deleted = 0;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "recipe_id", nullable = false)
