@@ -32,6 +32,17 @@ public class UserRegistrationDto {
     @NotEmpty
     private String confirmEmail;
 
+    public UserRegistrationDto(@NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @NotEmpty String confirmPassword, @Email @NotEmpty String email, @Email @NotEmpty String confirmEmail) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.email = email;
+        this.confirmEmail = confirmEmail;
+    }
+
+    public UserRegistrationDto() {
+    }
 
     public String getFirstName() {
         return firstName;

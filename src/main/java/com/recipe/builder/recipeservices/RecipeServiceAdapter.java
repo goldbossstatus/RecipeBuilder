@@ -10,13 +10,12 @@ public class RecipeServiceAdapter implements IRecipeService {
 
     private final RecipeRepository recipeRepository;
 
-    @Autowired
     public RecipeServiceAdapter(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
     @Override
-    public Recipe createRecipe(RecipeRequest recipeRequest, User currentUser) {
+    public Recipe save(RecipeRequest recipeRequest, User currentUser) {
         Recipe recipe = new Recipe(recipeRequest.getTitle(),
                 recipeRequest.getCooktime(),
                 recipeRequest.getInstructions(),

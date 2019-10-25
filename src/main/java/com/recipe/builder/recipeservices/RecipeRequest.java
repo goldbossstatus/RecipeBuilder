@@ -10,6 +10,15 @@ public class RecipeRequest {
 
     private String description;
 
+    public RecipeRequest(String title, String cooktime, String instructions, String description) {
+        this.title = title;
+        this.cooktime = cooktime;
+        this.instructions = instructions;
+        this.description = description;
+    }
+
+    public RecipeRequest() {
+    }
 
     public String getTitle() {
         return title;

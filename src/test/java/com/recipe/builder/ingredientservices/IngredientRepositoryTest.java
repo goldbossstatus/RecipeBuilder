@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @RunWith(SpringRunner.class)
 @SpringBootTest()
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CreateIngredientTest {
+public class IngredientRepositoryTest {
 
     @Autowired
     private IngredientRepository ingredientRepository;

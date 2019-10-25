@@ -39,7 +39,6 @@ public class Recipe {
     @ManyToOne()
     @JoinColumn(name = "user_id")
     @NotNull
-    @JsonIgnore
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe", cascade = CascadeType.ALL)
@@ -128,7 +127,6 @@ public class Recipe {
     public Date getLastUpdatedAt() {
         return lastUpdatedAt;
     }
-
 
 
 }

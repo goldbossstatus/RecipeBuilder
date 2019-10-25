@@ -5,6 +5,6 @@ import com.recipe.builder.models.User;
 
 public interface IRecipeService {
 
-    Recipe createRecipe(RecipeRequest recipeRequest, User currentUser);
+    Recipe save(RecipeRequest recipeRequest, User currentUser);
 
 }

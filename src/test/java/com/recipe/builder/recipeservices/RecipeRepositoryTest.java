@@ -1,9 +1,9 @@
-package com.recipe.builder.tagservices;
+package com.recipe.builder.recipeservices;
 
+
+import com.recipe.builder.models.Ingredient;
 import com.recipe.builder.models.Recipe;
-import com.recipe.builder.models.Tag;
 import com.recipe.builder.models.User;
-import com.recipe.builder.recipeservices.RecipeRepository;
 import com.recipe.builder.userservices.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,35 +15,34 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CreateTagTest {
+public class RecipeRepositoryTest {
 
-    @Autowired
-    private TagRepository tagRepository;
     @Autowired
     private RecipeRepository recipeRepository;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+//    public CreateRecipeTest(RecipeRepository rr, UserRepository ur) {
+//        this.recipeRepository = rr;
+//        this.userRepository = ur;
+//    }
 
     User user;
-    Recipe recipe1;
-    Tag tag1;
-    Tag tag2;
+    Recipe recipe;
 
     @Before
     public void init() {
         int randomNum = getRandomNum();
         String email = String.format("user-%d@example.com", randomNum);
         user = new User("John", "Doe", email, "password");
-        recipe1 = new Recipe("Breakfast Burrito", "1 hour", "Here are the instructions",
+        recipe = new Recipe("Breakfast Buurrito", "1 hour", "Here are the instructions",
                 "Here is the description", user);
-        tag1 = new Tag("Mexican", recipe1);
-        tag2 = new Tag("Breakfast", recipe1);
     }
 
     private int getRandomNum() {
@@ -51,23 +50,12 @@ public class CreateTagTest {
     }
 
     @Test
-    public void TestSaveNewTag() {
+    public void TestSaveNewRecipe() {
         userRepository.save(user);
-        recipeRepository.save(recipe1);
-        tagRepository.save(tag1);
-        tagRepository.save(tag2);
-        assertEquals(tag1.getRecipe(), recipe1);
-        assertEquals(tag2.getRecipe(), recipe1);
-        assertNotEquals(recipe1.getIngredients(), tag2);
-        assertEquals(tagRepository.findByRecipeId(recipe1.getId()).size(), 2);
-    }
-
-    @Test
-    public void TestTagDetails() {
-        assertEquals(tag1.getTitle(), "Mexican");
-        assertEquals(tag2.getTitle(), "Breakfast");
-        assertNotEquals(tag1.getTitle(), "monkey");
-        assertNotEquals(tag2.getTitle(), "monkey");
+        recipeRepository.save(recipe);
+        assertNotNull(recipe);
+        assertEquals(user.getId(), recipe.getUser().getId());
+        assertEquals(recipeRepository.findByUserId(user.getId()).size(), 1);
     }
 
 }
