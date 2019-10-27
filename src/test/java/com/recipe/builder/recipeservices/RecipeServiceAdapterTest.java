@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,9 +40,9 @@ public class RecipeServiceAdapterTest {
     public void TestRecipeAdapter() {
         userRepository.save(user);
         Recipe recipeCheck = recipeServiceAdapter.save(recipe, user);
-        userRepository.save(user);
+        ArrayList<Recipe> recipes = recipeServiceAdapter.findByUserId(user.getId());
+        boolean check = recipes.isEmpty() == false;
+        assertTrue(check);
         assertEquals(recipe.getTitle(), recipeCheck.getTitle());
-        List<Recipe> myList = user.getRecipes();
-        assertTrue(myList.contains(recipeCheck));
     }
 }

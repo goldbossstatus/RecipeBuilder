@@ -2,8 +2,10 @@ package com.recipe.builder.recipeservices;
 
 import com.recipe.builder.models.Recipe;
 import com.recipe.builder.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Component
 public class RecipeServiceAdapter implements IRecipeService {
@@ -23,5 +25,15 @@ public class RecipeServiceAdapter implements IRecipeService {
                 currentUser);
         recipeRepository.save(recipe);
         return recipe;
+    }
+
+    @Override
+    public ArrayList<Recipe> findByUserId(Long userId) {
+        return recipeRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Optional<Recipe> findById(Long id) {
+        return recipeRepository.findById(id);
     }
 }

@@ -10,7 +10,7 @@ public class RecipeRequest {
 
     private String description;
 
-    public RecipeRequest(String title, String cooktime, String instructions, String description) {
+    public RecipeRequest(String title, String cooktime, String description, String instructions) {
         this.title = title;
         this.cooktime = cooktime;
         this.instructions = instructions;

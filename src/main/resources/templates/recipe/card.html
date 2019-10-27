@@ -1,0 +1,19 @@
+<div class="flex-none w-64 pb-6 md:block">
+    <div class="card w-64">
+
+<!--        <div th:each="attachment : ${recipe.attachments}">-->
+<!--            <img alt="Card image cap" class="card-img-top" th:src="${attachment.url}">-->
+<!--        </div>-->
+
+        <div class="card-body">
+            Title <p class="card-text" th:text="${recipe.title}"></p>
+            Cooktime <p class="card-text" th:text="${recipe.cooktime}"></p>
+            Instructions <p class="card-text" th:text="${recipe.instructions}"></p>
+            Description <p class="card-text" th:text="${recipe.description}"></p>
+        </div>
+
+        <div class="card-footer text-muted">
+            <p class="card-text" th:text="${#dates.format(recipe.createdAt,'dd-MMM-yyyy')}"></p>
+        </div>
+    </div>
+</div>
