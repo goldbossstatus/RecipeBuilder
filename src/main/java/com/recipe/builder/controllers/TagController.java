@@ -1,11 +1,11 @@
 package com.recipe.builder.controllers;
 
-import com.recipe.builder.ingredientservices.IngredientRequest;
-import com.recipe.builder.ingredientservices.IngredientServiceAdapter;
-import com.recipe.builder.models.Ingredient;
 import com.recipe.builder.models.Recipe;
+import com.recipe.builder.models.Tag;
 import com.recipe.builder.models.User;
 import com.recipe.builder.recipeservices.RecipeServiceAdapter;
+import com.recipe.builder.tagservices.TagRequest;
+import com.recipe.builder.tagservices.TagServiceAdapter;
 import com.recipe.builder.userservices.UserServiceAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,51 +18,46 @@ import java.security.Principal;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/ingredient")
-public class IngredientController {
+@RequestMapping("/tag")
+public class TagController {
 
-    private final RecipeServiceAdapter recipeServiceAdapter;
-    private final IngredientServiceAdapter ingredientServiceAdapter;
+    private final TagServiceAdapter tagServiceAdapter;
     private final UserServiceAdapter userServiceAdapter;
+    private final RecipeServiceAdapter recipeServiceAdapter;
 
-    public IngredientController(RecipeServiceAdapter recipeServiceAdapter,
-                                IngredientServiceAdapter ingredientServiceAdapter,
-                                UserServiceAdapter userServiceAdapter) {
-        this.recipeServiceAdapter = recipeServiceAdapter;
-        this.ingredientServiceAdapter = ingredientServiceAdapter;
+    public TagController(TagServiceAdapter tagServiceAdapter,
+                         UserServiceAdapter userServiceAdapter,
+                         RecipeServiceAdapter recipeServiceAdapter) {
+        this.tagServiceAdapter = tagServiceAdapter;
         this.userServiceAdapter = userServiceAdapter;
+        this.recipeServiceAdapter = recipeServiceAdapter;
     }
 
     @GetMapping("/add/{id}")
-    public String getAddIngredientForm(@PathVariable("id") Long recipeId,
-                                       Model model, Principal principal) {
+    public String getAddTagForm(@PathVariable("id") Long recipeId,
+                                Principal principal, Model model) {
         User user = userServiceAdapter.retrieveUser(principal);
         Optional<Recipe> optRecipe = recipeServiceAdapter.findById(recipeId);
         if(optRecipe.get().getUser() == user && optRecipe.isPresent()) {
             Recipe recipe = optRecipe.get();
             model.addAttribute("recipe", recipe);
-            return "ingredient/add";
+            return "tag/add";
         } else {
             return "redirect:notfound";
         }
     }
 
-
     @PostMapping("/add/{id}")
-    public String saveIngredient(@PathVariable("id") Long recipeId,
-                                Principal principal,
-                                Model model,
-                                IngredientRequest ingredientRequest) {
+    public String saveTag(@PathVariable("id") Long recipeId,
+                          Principal principal, Model model,
+                          TagRequest tagRequest) {
         User user = userServiceAdapter.retrieveUser(principal);
         Optional<Recipe> optRecipe = recipeServiceAdapter.findById(recipeId);
         if(optRecipe.get().getUser() == user && optRecipe.isPresent()) {
             Recipe recipe = optRecipe.get();
-            Ingredient ingredient = ingredientServiceAdapter.create(ingredientRequest, recipe);
+            Tag tag = tagServiceAdapter.create(tagRequest, recipe);
             return "redirect:/recipe/" + recipe.getId();
-
         }
         return "redirect:notfound";
     }
-
-
 }

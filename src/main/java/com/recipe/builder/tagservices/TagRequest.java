@@ -2,18 +2,18 @@ package com.recipe.builder.tagservices;
 
 public class TagRequest {
 
-    private String title;
+    private String name;
 
-    public TagRequest(String title) {
-        this.title = title;
+    public TagRequest(String name) {
+        this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

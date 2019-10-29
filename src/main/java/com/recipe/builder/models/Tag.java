@@ -29,7 +29,7 @@ public class Tag {
     private Long id;
 
     @NotNull
-    private String title;
+    private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -47,13 +47,13 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(@NotNull String title, Recipe recipe) {
-        this.title = title;
+    public Tag(@NotNull String name, Recipe recipe) {
+        this.name = name;
         this.recipe = recipe;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     public Recipe getRecipe() {

@@ -37,7 +37,7 @@ public class TagServiceAdapterTest {
     @Before
     public void init() {
         user = new User("John", "Doe", "monkey@2.com", "password");
-        recipe = new Recipe("title", "12 minutes", "instructions", "description", user);
+        recipe = new Recipe("name", "12 minutes", "instructions", "description", user);
         tag = new TagRequest("Breakfast");
     }
 
@@ -46,7 +46,7 @@ public class TagServiceAdapterTest {
         userRepository.save(user);
         recipeRepository.save(recipe);
         Tag check = tagServiceAdapter.create(tag, recipe);
-        assertEquals(check.getTitle(), tag.getTitle());
-        assertTrue(check.getRecipe().getTitle() == "title");
+        assertEquals(check.getName(), tag.getName());
+        assertTrue(check.getRecipe().getTitle() == "name");
     }
 }

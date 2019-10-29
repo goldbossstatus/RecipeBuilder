@@ -15,7 +15,7 @@ public class TagServiceAdapter implements ITagService {
 
     @Override
     public Tag create(TagRequest tagRequest, Recipe recipe) {
-        Tag tag = new Tag(tagRequest.getTitle(),
+        Tag tag = new Tag(tagRequest.getName(),
                 recipe);
 
         return tagRepository.save(tag);

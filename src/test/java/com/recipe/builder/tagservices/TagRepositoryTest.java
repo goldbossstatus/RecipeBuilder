@@ -64,10 +64,10 @@ public class TagRepositoryTest {
 
     @Test
     public void TestTagDetails() {
-        assertEquals(tag1.getTitle(), "Mexican");
-        assertEquals(tag2.getTitle(), "Breakfast");
-        assertNotEquals(tag1.getTitle(), "monkey");
-        assertNotEquals(tag2.getTitle(), "monkey");
+        assertEquals(tag1.getName(), "Mexican");
+        assertEquals(tag2.getName(), "Breakfast");
+        assertNotEquals(tag1.getName(), "monkey");
+        assertNotEquals(tag2.getName(), "monkey");
     }
 
 }

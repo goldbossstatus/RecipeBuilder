@@ -2,6 +2,7 @@ package com.recipe.builder.controllers;
 
 import com.recipe.builder.models.Ingredient;
 import com.recipe.builder.models.Recipe;
+import com.recipe.builder.models.Tag;
 import com.recipe.builder.models.User;
 import com.recipe.builder.recipeservices.RecipeRequest;
 import com.recipe.builder.recipeservices.RecipeServiceAdapter;
@@ -57,6 +58,8 @@ public class RecipeController {
             User user = userServiceAdapter.retrieveUser(principal);
             Recipe recipe = optionalRecipe.get();
             List<Ingredient> ingredients = recipe.getIngredients();
+            List<Tag> tags = recipe.getTags();
+            model.addAttribute("tags", tags);
             model.addAttribute("ingredients", ingredients);
             model.addAttribute("recipe", recipe);
             return "recipe/detail";
