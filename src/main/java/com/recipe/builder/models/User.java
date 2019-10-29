@@ -15,9 +15,9 @@ import java.util.List;
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
-@Table(name = "rec_user")
+@Table(name = "rc_user")
 @Where(clause = "deleted = 0")
-@SQLDelete(sql = "update rec_user set deleted = 1 WHERE id = ?")
+@SQLDelete(sql = "update rc_user set deleted = 1 WHERE id = ?")
 public class User {
 
     @Id

@@ -24,16 +24,28 @@
                     <div class="text-grey-dark text-sm truncate">
                     </div>
 
-<!--                    <h3 class="text-grey-darkest mb-1 text-3xl font-bold uppercase"> Recent posts </h3>-->
+                    <h3 class="text-grey-darkest mb-1 text-3xl font-bold uppercase"> Ingredients </h3>
 
-<!--                    <ol class="list-inside list-disc bg-gray-200 px-4 py-6">-->
-<!--                        <li th:each="post : ${recipe.posts}">-->
-<!--                            <a th:href="@{/post/} + ${post.id}" th:text="${post.title}"></a>-->
-<!--                        </li>-->
-<!--                    </ol>-->
-
-<!--                    <a class="btn btn-primary" th:href="@{/post/referenced/} + ${recipe.id}">Create a post</a>-->
+                    <div class="card-body">
+                        <ol class="list-inside list-disc bg-gray-200 px-4 py-6">
+                            <li th:each="ingredient : ${ingredients}">
+                                <p class="card-text" th:text="${ingredient.name}"></p>
+                            </li>
+                        </ol>
+                    </div>
+                    <a class="btn btn-secondary btn-sm" th:href="@{/ingredient/add/} + ${recipe.id}">Add an ingredient</a></td><td><a th:href="${'/recipe/' + recipe.id}"></a>
                 </div>
+
+                <h3 class="text-grey-darkest mb-1 text-3xl font-bold uppercase"> Tags </h3>
+
+                <div class="card-body">
+                    <ol class="list-inside list-disc bg-gray-200 px-4 py-6">
+                        <li th:each="tag : ${tags}">
+                            <p class="card-text" th:text="${tag.name}"></p>
+                        </li>
+                    </ol>
+                </div>
+                <a class="btn btn-secondary btn-sm" th:href="@{/tag/add/} + ${recipe.id}">Add a tag</a></td><td><a th:href="${'/recipe/' + recipe.id}"></a>
             </div>
         </div>
 

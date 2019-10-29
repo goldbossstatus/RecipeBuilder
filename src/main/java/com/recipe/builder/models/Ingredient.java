@@ -38,12 +38,6 @@ public class Ingredient {
     @JsonIgnore
     private Recipe recipe;
 
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
-    @NotNull
-    @JsonIgnore
-    private User user;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
@@ -55,15 +49,9 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(User user, @NotNull String name, Recipe recipe) {
-        this.user = user;
+    public Ingredient(@NotNull String name, Recipe recipe) {
         this.name = name;
         this.recipe = recipe;
-    }
-
-    @JsonProperty(value = "author_name")
-    public String getUser() {
-        return user.getFirstName();
     }
 
     public String getName() {

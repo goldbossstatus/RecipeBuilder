@@ -25,6 +25,7 @@
             <th>Cooktime</th>
             <th>Instructions</th>
             <th>Description</th>
+            <th>Add Ingredients</th>
             <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -36,7 +37,7 @@
                 <td th:text="${recipe.cooktime}"></td>
                 <td th:text="${recipe.instructions}"></td>
                 <td th:text="${recipe.description}"></td>
-                <td><a th:href="${'/recipe/' + recipe.id}">View</a></td>
+                <td><a class="btn btn-secondary btn-sm" th:href="@{/ingredient/add/} + ${recipe.id}">Add an ingredient</a></td><td><a th:href="${'/recipe/' + recipe.id}">View</a></td>
 <!--                <td><a th:href="${'/recipe/edit/' + recipe.id}">Edit</a></td>-->
 <!--                <td><a th:href="${'/recipe/delete/' + recipe.id}">Delete</a></td>-->
             </tr>

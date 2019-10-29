@@ -50,8 +50,8 @@ public class IngredientRepositoryTest {
         user = new User("John", "Doe", email, "password");
         recipe1 = new Recipe("Breakfast Burrito", "1 hour", "Here are the instructions",
                 "Here is the description", user);
-        one = new Ingredient(user, "Bacon", recipe1);
-        two = new Ingredient(user, "Cheese", recipe1);
+        one = new Ingredient("Bacon", recipe1);
+        two = new Ingredient("Cheese", recipe1);
     }
 
     private int getRandomNum() {

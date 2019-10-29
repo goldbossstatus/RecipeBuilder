@@ -1,5 +1,6 @@
 package com.recipe.builder.controllers;
 
+import com.recipe.builder.models.Ingredient;
 import com.recipe.builder.models.Recipe;
 import com.recipe.builder.models.User;
 import com.recipe.builder.recipeservices.RecipeRequest;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -53,7 +55,10 @@ public class RecipeController {
         Optional<Recipe> optionalRecipe = recipeServiceAdapter.findById(id);
         if(optionalRecipe.isPresent()) {
             User user = userServiceAdapter.retrieveUser(principal);
-            model.addAttribute("recipe", optionalRecipe.get());
+            Recipe recipe = optionalRecipe.get();
+            List<Ingredient> ingredients = recipe.getIngredients();
+            model.addAttribute("ingredients", ingredients);
+            model.addAttribute("recipe", recipe);
             return "recipe/detail";
         } else {
             return "redirect:notfound";
