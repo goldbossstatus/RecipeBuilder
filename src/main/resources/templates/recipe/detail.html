@@ -27,23 +27,26 @@
                     <h3 class="text-grey-darkest mb-1 text-3xl font-bold uppercase"> Ingredients </h3>
 
                     <div class="card-body">
-                        <ol class="list-inside list-disc bg-gray-200 px-4 py-6">
+                        <ul class="list-inside list-disc bg-gray-200 px-4 py-6">
                             <li th:each="ingredient : ${ingredients}">
                                 <p class="card-text" th:text="${ingredient.name}"></p>
+                                <td method="get"><a th:href="${'/ingredient/' + ingredient.id}">Delete</a></td>
                             </li>
-                        </ol>
+                        </ul>
                     </div>
                     <a class="btn btn-secondary btn-sm" th:href="@{/ingredient/add/} + ${recipe.id}">Add an ingredient</a></td><td><a th:href="${'/recipe/' + recipe.id}"></a>
                 </div>
 
+
                 <h3 class="text-grey-darkest mb-1 text-3xl font-bold uppercase"> Tags </h3>
 
                 <div class="card-body">
-                    <ol class="list-inside list-disc bg-gray-200 px-4 py-6">
+                    <ul class="list-inside list-disc bg-gray-200 px-4 py-6">
                         <li th:each="tag : ${tags}">
                             <p class="card-text" th:text="${tag.name}"></p>
+                            <td method="get"><a th:href="${'/tag/' + tag.id}">Delete</a></td>
                         </li>
-                    </ol>
+                    </ul>
                 </div>
                 <a class="btn btn-secondary btn-sm" th:href="@{/tag/add/} + ${recipe.id}">Add a tag</a></td><td><a th:href="${'/recipe/' + recipe.id}"></a>
             </div>

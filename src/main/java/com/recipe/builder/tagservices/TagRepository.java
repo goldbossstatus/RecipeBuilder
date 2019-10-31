@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface TagRepository extends CrudRepository<Tag, Long> {
 
+    Optional<Tag> findById(Long tagId);
     ArrayList<Tag> findByRecipeId (Long recipeId);
 }

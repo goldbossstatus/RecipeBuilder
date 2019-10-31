@@ -9,10 +9,7 @@ import com.recipe.builder.recipeservices.RecipeServiceAdapter;
 import com.recipe.builder.userservices.UserServiceAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -59,9 +56,19 @@ public class IngredientController {
             Recipe recipe = optRecipe.get();
             Ingredient ingredient = ingredientServiceAdapter.create(ingredientRequest, recipe);
             return "redirect:/recipe/" + recipe.getId();
-
         }
         return "redirect:notfound";
+    }
+
+    @GetMapping("/{id}")
+    public String deleteIngredient(@PathVariable("id") Long id, Principal principal) {
+        Optional<Ingredient> byId = ingredientServiceAdapter.findById(id);
+        User user = userServiceAdapter.retrieveUser(principal);
+        Optional<Recipe> recipe = recipeServiceAdapter.findById(byId.get().getRecipe().getId());
+        if (byId.isPresent() && byId.get().getRecipe().getUser().equals(user)) {
+            ingredientServiceAdapter.delete(byId.get());
+        }
+        return "redirect:/recipe/" + recipe.get().getId();
     }
 
 

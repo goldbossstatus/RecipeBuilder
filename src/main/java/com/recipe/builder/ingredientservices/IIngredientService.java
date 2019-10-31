@@ -16,4 +16,6 @@ public interface IIngredientService {
 
     List<Ingredient> getIngredients(Recipe recipe);
 
+    void delete(Ingredient ingredient);
+
 }

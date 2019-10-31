@@ -33,4 +33,9 @@ public class IngredientServiceAdapter implements IIngredientService {
     public List<Ingredient> getIngredients(Recipe recipe) {
         return recipe.getIngredients();
     }
+
+    @Override
+    public void delete(Ingredient ingredient) {
+        ingredientRepository.delete(ingredient);
+    }
 }

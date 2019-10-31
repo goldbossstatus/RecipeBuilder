@@ -13,8 +13,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
@@ -42,11 +41,24 @@ public class IngredientServiceAdapterTest {
     }
 
     @Test
-    public void TestIngredientAdapter() {
+    public void TestCreateIngredientAdapter() {
         userRepository.save(user);
         recipeRepository.save(recipe);
         Ingredient check = ingredientServiceAdapter.create(ingredient, recipe);
         assertEquals(ingredient.getName(), "Butter");
         assertTrue(check.getRecipe().getCooktime() == "12 minutes");
     }
+
+    @Test
+    public void TestDeleteIngredientAdapter() {
+        userRepository.save(user);
+        recipeRepository.save(recipe);
+        Ingredient check = ingredientServiceAdapter.create(ingredient, recipe);
+        assertNotNull(user);
+        assertNotNull(recipe);
+        assertNotNull(ingredient);
+        ingredientServiceAdapter.delete(check);
+        assertTrue(recipe.getIngredients().isEmpty());
+    }
+
 }

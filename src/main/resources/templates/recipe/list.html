@@ -28,7 +28,7 @@
             <th>Add Ingredients</th>
             <th>Add Tags</th>
             <th>View</th>
-            <th>Edit</th>
+<!--            <th>Edit</th>-->
             <th>Delete</th>
             </thead>
             <tbody>
@@ -42,7 +42,7 @@
                 <td><a class="btn btn-secondary btn-sm" th:href="@{/tag/add/} + ${recipe.id}">Add a Tag</a></td>
                 <td><a th:href="${'/recipe/' + recipe.id}">View</a></td>
                 <!--                <td><a th:href="${'/recipe/edit/' + recipe.id}">Edit</a></td>-->
-<!--                <td><a th:href="${'/recipe/delete/' + recipe.id}">Delete</a></td>-->
+<!--                <td method="delete"><a th:href="${'/recipe/delete/' + recipe.id}">Delete</a></td>-->
             </tr>
             </tbody>
         </table>

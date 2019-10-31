@@ -13,8 +13,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
@@ -48,5 +47,17 @@ public class TagServiceAdapterTest {
         Tag check = tagServiceAdapter.create(tag, recipe);
         assertEquals(check.getName(), tag.getName());
         assertTrue(check.getRecipe().getTitle() == "name");
+    }
+
+    @Test
+    public void TestDeleteTagAdapter() {
+        userRepository.save(user);
+        recipeRepository.save(recipe);
+        Tag check = tagServiceAdapter.create(tag, recipe);
+        assertNotNull(user);
+        assertNotNull(recipe);
+        assertNotNull(tag);
+        tagServiceAdapter.delete(check);
+        assertTrue(recipe.getTags().isEmpty());
     }
 }

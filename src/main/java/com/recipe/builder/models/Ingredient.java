@@ -54,6 +54,10 @@ public class Ingredient {
         this.recipe = recipe;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

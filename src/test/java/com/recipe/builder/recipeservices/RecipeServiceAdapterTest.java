@@ -45,4 +45,6 @@ public class RecipeServiceAdapterTest {
         assertTrue(check);
         assertEquals(recipe.getTitle(), recipeCheck.getTitle());
     }
+
+
 }

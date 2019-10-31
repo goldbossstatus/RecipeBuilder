@@ -7,6 +7,7 @@ import com.recipe.builder.recipeservices.RecipeServiceAdapter;
 import com.recipe.builder.tagservices.TagRequest;
 import com.recipe.builder.tagservices.TagServiceAdapter;
 import com.recipe.builder.userservices.UserServiceAdapter;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,5 +60,16 @@ public class TagController {
             return "redirect:/recipe/" + recipe.getId();
         }
         return "redirect:notfound";
+    }
+
+    @GetMapping("/{id}")
+    public String deleteTag(@PathVariable("id") Long tagId, Principal principal) {
+        User user = userServiceAdapter.retrieveUser(principal);
+        Optional<Tag> optTag = tagServiceAdapter.findById(tagId);
+        Optional<Recipe> optRecipe = recipeServiceAdapter.findById(optTag.get().getRecipe().getId());
+        if(optRecipe.get().getUser() == user && optRecipe.isPresent()) {
+            tagServiceAdapter.delete(optTag.get());
+        }
+        return "redirect:/recipe/" + optRecipe.get().getId();
     }
 }

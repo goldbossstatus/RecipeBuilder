@@ -1,6 +1,5 @@
 package com.recipe.builder.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -50,6 +49,10 @@ public class Tag {
     public Tag(@NotNull String name, Recipe recipe) {
         this.name = name;
         this.recipe = recipe;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
