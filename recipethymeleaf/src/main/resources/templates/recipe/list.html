@@ -1,0 +1,53 @@
+<html layout:decorator="layout/layout" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>choppybuilder</title>
+</head>
+<body>
+<div layout:fragment="breadcrum" th:remove="tag">
+    <li aria-current="page" class="breadcrumb-item active">Recipes</li>
+</div>
+
+<div layout:fragment="content">
+    <h2>My Recipes</h2>
+    <a class="btn btn-primary" th:href="@{/recipe/create}">New Recipe</a>
+
+    <div th:if="${message}">
+        <div class="alert alert-success" th:text="${message}"></div>
+    </div>
+
+
+    <div class="table table-responsive table-stripped">
+        <table class="table">
+            <thead>
+            <th>Title</th>
+            <th>Cooktime</th>
+            <th>Instructions</th>
+            <th>Description</th>
+            <th>Add Ingredients</th>
+            <th>Add Tags</th>
+            <th>View</th>
+<!--            <th>Edit</th>-->
+            <th>Delete</th>
+            </thead>
+            <tbody>
+
+            <tr th:each="recipe : ${recipes}">
+                <td th:text="${recipe.title}"></td>
+                <td th:text="${recipe.cooktime}"></td>
+                <td th:text="${recipe.instructions}"></td>
+                <td th:text="${recipe.description}"></td>
+                <td><a class="btn btn-secondary btn-sm" th:href="@{/ingredient/add/} + ${recipe.id}">Add an ingredient</a></td>
+                <td><a class="btn btn-secondary btn-sm" th:href="@{/tag/add/} + ${recipe.id}">Add a Tag</a></td>
+                <td><a th:href="${'/recipe/' + recipe.id}">View</a></td>
+                <!--                <td><a th:href="${'/recipe/edit/' + recipe.id}">Edit</a></td>-->
+<!--                <td method="delete"><a th:href="${'/recipe/delete/' + recipe.id}">Delete</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

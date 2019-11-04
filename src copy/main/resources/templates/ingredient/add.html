@@ -1,0 +1,48 @@
+<html layout:decorator="layout/layout" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <title>choppy</title>
+</head>
+<body>
+<div layout:fragment="breadcrum" th:remove="tag">
+    <li class="breadcrumb-item">
+        <a href="#" th:href="@{/recipe/list}">Recipes</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="#" th:href="@{/recipe/} + ${recipe.id}" th:text="${recipe.id}">Recipes</a>
+    </li>
+    <li aria-current="page" class="breadcrumb-item active">New Ingredient</li>
+</div>
+
+<div layout:fragment="content">
+
+    <div class="font-sans antialiased h-screen flex">
+        <div class="flex-1 flex flex-col bg-white overflow-hidden" xmlns:th="http://www.w3.org/1999/xhtml">
+            <!-- Top bar -->
+            <div class="border-b flex px-6 py-2 items-center flex-none">
+                <div class="flex flex-col">
+                    <h3 class="text-grey-darkest mb-1 font-extrabold"> New ingredient for <span
+                            th:text="${recipe.title}"></span></h3>
+                </div>
+            </div>
+
+            <div class="px-6 py-2">
+                <form action="#" method="post" th:action="@{/ingredient/add/} + ${recipe.id}">
+                    <div class="form-group">
+                        <label for="name">Ingredient Name</label>
+                        <input class="form-control" id="name" maxlength="256" name="name" required
+                               type="text"/>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>
