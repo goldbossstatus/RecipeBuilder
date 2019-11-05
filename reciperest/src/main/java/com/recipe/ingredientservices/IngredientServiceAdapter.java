@@ -17,11 +17,15 @@ public class IngredientServiceAdapter implements IIngredientService {
     }
 
     @Override
-    public Ingredient create(IngredientRequest ingredientRequest, Recipe recipe) {
+    public IngredientDTO create(IngredientDTO ingredientDTO, Recipe recipe) {
         Ingredient ingredient = new Ingredient(
-                ingredientRequest.getName(),
+                ingredientDTO.getName(),
                 recipe);
-        return ingredientRepository.save(ingredient);
+        Ingredient saved = ingredientRepository.save(ingredient);
+        ingredientDTO.setId(saved.getId());
+        ingredientDTO.setRecipeId(ingredient.getRecipe().getId());
+        ingredientDTO.setRecipeName(ingredient.getRecipe().getTitle());
+        return ingredientDTO;
     }
 
     @Override

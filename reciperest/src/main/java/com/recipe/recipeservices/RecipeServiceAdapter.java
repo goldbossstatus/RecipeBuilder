@@ -34,14 +34,9 @@ public class RecipeServiceAdapter implements IRecipeService {
     }
 
     @Override
-    public RecipeDTO findById(Long id) {
+    public Recipe findById(Long id) {
         Optional<Recipe> optRecipe = recipeRepository.findById(id);
-//        Recipe recipe = optRecipe.get();
-        RecipeDTO recipeDTO = new RecipeDTO(optRecipe.get().getId(),
-                optRecipe.get().getTitle(), optRecipe.get().getCooktime(),
-                optRecipe.get().getDescription(), optRecipe.get().getInstructions(),
-                optRecipe.get().getTags(), optRecipe.get().getIngredients(),
-                optRecipe.get().getUser().getId());
-        return recipeDTO;
+        Recipe recipe = optRecipe.get();
+        return recipe;
     }
 }

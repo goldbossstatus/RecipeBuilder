@@ -47,9 +47,6 @@ public class RecipeDTO {
         this.userId = userId;
     }
 
-    public RecipeDTO(Long id, String title, String cooktime, String description, String instructions, List<Tag> tags, List<Ingredient> ingredients, String firstName) {
-    }
-
     public Long getId() {
         return id;
     }

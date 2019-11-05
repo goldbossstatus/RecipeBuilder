@@ -11,5 +11,5 @@ public interface IRecipeService {
 
     ArrayList<Recipe> findByUserId(Long userId);
 
-    RecipeDTO findById(Long id);
+    Recipe findById(Long id);
 }

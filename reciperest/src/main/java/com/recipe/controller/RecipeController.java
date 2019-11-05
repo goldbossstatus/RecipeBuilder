@@ -37,7 +37,10 @@ public class RecipeController {
 	public RecipeDTO getRecipeById(@PathVariable("id") Long id,
 												   Principal principal) {
 		User currentUser = userService.retrieveUser(principal);
-		RecipeDTO recipeDTO = recipeService.findById(id);
+		Recipe recipe = recipeService.findById(id);
+		RecipeDTO recipeDTO = new RecipeDTO(recipe.getId(), recipe.getTitle(),
+				recipe.getCooktime(), recipe.getDescription(), recipe.getInstructions(),
+				recipe.getTags(), recipe.getIngredients(), recipe.getUser().getId());
 		if(recipeDTO.getUserId() == currentUser.getId()) {
 			return recipeDTO;
 		}

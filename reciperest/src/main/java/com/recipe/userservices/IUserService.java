@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.security.Principal;
 
-
 public interface IUserService extends UserDetailsService {
 
     UserDTO saveAPI(UserDTO userDTO);

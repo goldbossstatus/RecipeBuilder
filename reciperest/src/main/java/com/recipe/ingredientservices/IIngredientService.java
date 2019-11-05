@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface IIngredientService {
 
-    Ingredient create(IngredientRequest ingredientRequest, Recipe recipe);
+    IngredientDTO create(IngredientDTO ingredientDTO, Recipe recipe);
 
     Optional<Ingredient> findById(Long id);
 

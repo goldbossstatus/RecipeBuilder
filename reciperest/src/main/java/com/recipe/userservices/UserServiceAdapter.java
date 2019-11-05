@@ -2,18 +2,20 @@ package com.recipe.userservices;
 
 import com.recipe.models.User;
 import com.recipe.models.UserRole;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
+@Qualifier("userServiceAdapter")
 public class UserServiceAdapter implements IUserService {
 
     private final UserRepository userRepository;
