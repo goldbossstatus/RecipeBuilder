@@ -31,7 +31,6 @@ public class Ingredient {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "recipe_id")
-    @NotNull
     @JsonIgnore
     private Recipe recipe;
 
@@ -49,6 +48,12 @@ public class Ingredient {
     }
 
     public Ingredient(@NotNull String name, Recipe recipe) {
+        this.name = name;
+        this.recipe = recipe;
+    }
+
+    public Ingredient(Long id, String name, Recipe recipe) {
+        this.id = id;
         this.name = name;
         this.recipe = recipe;
     }

@@ -55,6 +55,12 @@ public class Tag {
         this.recipe = recipe;
     }
 
+    public Tag(Long id, String name, Recipe recipe) {
+        this.id = id;
+        this.name = name;
+        this.recipe = recipe;
+    }
+
     public Long getId() {
         return id;
     }

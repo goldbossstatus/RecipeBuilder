@@ -82,6 +82,20 @@ public class Recipe {
         this.user = user;
     }
 
+    public Recipe(@NotNull @Size(max = 100) String title,
+                  @NotNull @Size(max = 50) String cooktime,
+                  @NotNull String instructions, @NotNull String description,
+                  @NotNull User user, List<Ingredient> ingredients,
+                  List<Tag> tags) {
+        this.title = title;
+        this.cooktime = cooktime;
+        this.instructions = instructions;
+        this.description = description;
+        this.user = user;
+        this.ingredients = ingredients;
+        this.tags = tags;
+    }
+
     public Long getId() {
         return id;
     }

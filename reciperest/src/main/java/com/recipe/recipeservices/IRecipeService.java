@@ -12,4 +12,15 @@ public interface IRecipeService {
     ArrayList<Recipe> findByUserId(Long userId);
 
     Recipe findById(Long id);
+
+    Recipe changeTitle(Recipe recipe, RecipeChangeTitleDTO recipeChangeTitleDTO);
+
+    Recipe changeCooktime(Recipe recipe, RecipeChangeCooktimeDTO recipeChangeCooktimeDTO);
+
+    Recipe changeInstruction(Recipe recipe, RecipeChangeInstructionDTO recipeChangeInstructionDTO);
+
+    Recipe changeDescription(Recipe recipe, RecipeChangeDescriptionDTO recipeChangeDescriptionDTO);
+
+    Recipe changeRecipe(Recipe recipe, RecipeDTO recipeDTO);
+
 }
